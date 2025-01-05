@@ -1,0 +1,243 @@
+﻿@{
+    ViewData["Title"] = "SHBO";
+}
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<main>
+    <div>
+        <section class="content section1">
+            <header class="section1__header">
+                <nav class="section1__nav">
+                    <ul class="section1__nav-list">
+                        <li class="section1__nav-item">
+                            <a class="section1__nav-link" href="#">
+                                О компании
+                            </a>
+                        </li>
+
+                        <li class="section1__nav-item">
+                            <a class="section1__nav-link" href="#">
+                                Поиск квартир
+                            </a>
+                        </li>
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="section1__nav-item">
+                                <a class="section1__nav-link" asp-area="" asp-controller="Admin" asp-action="Index">
+                                    Публикация квартир
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+
+                <img class="section1__logo" src="img/logo.png" alt="logo" />
+                <ul class="section1__account">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+                        </li>
+                        <li class="nav-item">
+                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button type="submit" class="btn section1__btn">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a  asp-area="Identity" asp-page="/Account/Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Identity" asp-page="/Account/Login">Login</a>
+                        </li>
+                    }
+                </ul>
+            </header>
+
+            <div class="section1__title-wrap">
+                <h1 class="section1__title">Жилой компекс<br />бизнес-класса</h1>
+            </div>
+
+            <img class="section1__image" src="img/house1.jpg" alt="header photo" />
+        </section>
+
+        <section class="content section2">
+            <div class="section2__cards-wrap">
+                <div class="section2__card">
+                    <img class="section2__image" src="./img/house5.jpg" alt="house 2" />
+                    <div class="section2__card-descr-wrap">
+                        <p class="section2__description">ЖК "ШДО" | 1-я очередь</p>
+                        <p class="section2__price">от 10 млн. ₽</p>
+                    </div>
+                    <p class="section2__mark">Бизнес-класс</p>
+                </div>
+
+                <div class="section2__card">
+                    <img class="section2__image" src="./img//house6.jpg" alt="house 3" />
+                    <div class="section2__card-descr-wrap">
+                        <p class="section2__description">ЖК "ШДО" | 2-я очередь</p>
+                        <p class="section2__price">от 9.3 млн. ₽</p>
+                    </div>
+                    <p class="section2__mark">Бизнес-класс</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content section3">
+            <form class="section3__form">
+                <h3 class="section3__form-title">Узнать больше?</h3>
+                <p class="section3__form-descr">Наш менеджер свяжется с вами<br />в ближайшее время</p>
+                <input class="section3__input" placeholder="Имя*" required />
+                <input class="section3__input" type="email" placeholder="Почта*" required />
+                <button class="section3__submit-btn">отправить</button>
+            </form>
+
+            <img class="section3__background" src="./img/map.jpg" alt="map" />
+        </section>
+    </div>
+
+    <div class="slider-wrap">
+        <div class="slider">
+            <img class="slider__image" src="img/logo.png" alt="logo" />
+        </div>
+        <div class="slider">
+            <img class="slider__image" src="img/logo.png" alt="logo" />
+        </div>
+        <div class="slider">
+            <img class="slider__image" src="./img/logo.png" alt="logo" />
+        </div>
+        <div class="slider">
+            <img class="slider__image" src="./img/logo.png" alt="logo" />
+        </div>
+        <div class="slider">
+            <img class="slider__image" src="./img/logo.png" alt="logo" />
+        </div>
+        <div class="slider">
+            <img class="slider__image" src="./img/logo.png" alt="logo" />
+        </div>
+        <div class="slider">
+            <img class="slider__image" src="./img/logo.png" alt="logo" />
+        </div>
+        <div class="slider">
+            <img class="slider__image" src="./img/logo.png" alt="logo" />
+        </div>
+        <div class="slider">
+            <img class="slider__image" src="./img/logo.png" alt="logo" />
+        </div>
+    </div>
+
+</main>
+
+
+<script>
+
+    const sliderWrap = document.querySelector('.slider-wrap');
+    const sliders = document.querySelectorAll('.slider');
+    const body = document.querySelector('body');
+    const sections = document.querySelectorAll('.content');
+
+    let currentSlide = 0;
+    let canIncreaseSlide = false;
+    let isBottom = true;
+    let isFirstScroll = true;
+
+    const viewSliderDown = () => {
+
+    };
+
+    const viewSliderUp = () => {
+
+    };
+
+    const updateFisualDown = () => {
+        body.scrollTo(0, 1);
+        setTimeout(() => {
+            if (currentSlide != 0) {
+                sections[currentSlide - 1].style.display = 'none';
+            }
+            sections[currentSlide].style.display = 'block';
+        }, 1000);
+
+
+        sliderWrap.style.opacity = '1';
+        sliderWrap.style.zIndex = '10000';
+        sliderWrap.style.transform = `translateY(-${currentSlide * (window.innerHeight * 2)}px)`;
+
+        setTimeout(() => {
+            sliderWrap.style.opacity = '0';
+            sliderWrap.style.zIndex = '0';
+        }, 2000);
+
+
+        viewSliderDown();
+    };
+
+    const updateFisualUp = () => {
+        body.scrollTo(0, 0);
+        setTimeout(() => {
+            sections[currentSlide + 1].style.display = 'none';
+            sections[currentSlide].style.display = 'block';
+        }, 1000);
+
+
+        sliderWrap.style.opacity = '1';
+        sliderWrap.style.zIndex = '10000';
+        sliderWrap.style.transform = `translateY(-${currentSlide * (window.innerHeight * 2)}px)`;
+
+        setTimeout(() => {
+            sliderWrap.style.opacity = '0';
+            sliderWrap.style.zIndex = '0';
+        }, 2000);
+    };
+
+    window.onload = () => {
+        sections[0].style.display = 'block';
+        canIncreaseSlide = true;
+    }
+
+    body.onwheel = (e) => {
+        e.preventDefault();
+        body.scrollTo(0, 0);
+
+        isBottom = e.deltaY > 0;
+    };
+
+    window.onwheel = (e) => {
+        e.preventDefault();
+        window.scrollTo(0, 0);
+    };
+
+    body.onscroll = (e) => {
+        if (isFirstScroll) {
+            isFirstScroll = false; // игнорируем первое событие
+            return; // выход из функции
+        }
+        body.style.overflow = 'hidden';
+        window.scrollTo(0, 1);
+
+        if (canIncreaseSlide) {
+            canIncreaseSlide = false;
+
+            if (isBottom && currentSlide < 2) {
+                currentSlide++;
+                if (currentSlide >= 3) currentSlide = 2;
+                updateFisualDown();
+            }
+            else if (!isBottom && currentSlide >= 0) {
+                currentSlide--;
+                if (currentSlide <= 0) currentSlide = 0;
+                updateFisualUp();
+            }
+
+            setTimeout(() => {
+                canIncreaseSlide = true;
+            }, 2000);
+        }
+
+    };
+</script>

@@ -1,0 +1,82 @@
+
+.section1__image {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: scaleHeader 10s forwards;
+    z-index: 0;
+}
+
+.section1__header {
+    display: grid;
+    grid-template-columns: 1fr 100px 1fr;
+    align-items: center;
+    position: relative;
+    height: 60px;
+    padding-inline: 30px;
+    border-bottom: 1px solid white;
+    z-index: 1;
+}
+
+.section1__nav {
+    height: 100%;
+}
+
+.section1__nav-list {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 100%;
+}
+
+.section1 a{
+    color: white;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.section1 a:hover{
+    color: rgb(236, 233, 233);
+}
+
+.section1__logo {
+    position: relative;
+    height: 30px;
+    justify-self: center;
+}
+
+.section1__title-wrap{
+    position: relative;
+    top: 40%;
+    left: 30px;
+    z-index: 1;
+}
+
+.section1__title{
+    font-size: 70px;
+    color: white;
+}
+
+.section1__account {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-self: end;
+}
+
+.section1__btn {
+    margin: 0px;
+    padding: 3px;
+}
+
+@keyframes scaleHeader {
+    0% {
+        scale: 1;
+    }
+
+    100% {
+        scale: 1.1;
+    }
+}

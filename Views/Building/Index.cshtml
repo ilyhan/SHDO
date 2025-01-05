@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Дом";
+}
+
+@model IEnumerable<WebApplication4.Models.Building>
+
+<div class="table-wrap">
+    <p>
+        <a class="btn btn-success" asp-action="Create">Создать дом</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id дома</th>
+                <th>ЖК</th>
+                <th>Местоположение</th>
+                <th>Материал стен</th>
+                <th>Количество этажей</th>
+                <th>Улица</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.BuildingId</td>
+                    <td>@item.ConstructionProject?.Name</td>
+                    <td>@item.Location</td>
+                    <td>@item.WallMaterial</td>
+                    <td>@item.Floors</td>
+                    <td>@item.Street</td>
+                    <td>
+                        <form asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@item.BuildingId" />
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Дом";
+}
+
+@model WebApplication4.Models.ViewModels.BuildingModel
+
+<div class="container">
+    <h2>Создание Дома</h2>
+
+    <form asp-action="Create">
+        <div class="form-group">
+            <label asp-for="Building.Location">Местоположение</label>
+            <input asp-for="Building.Location" class="form-control" />
+            <span asp-validation-for="Building.Location" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Building.WallMaterial">Материал стен</label>
+            <input asp-for="Building.WallMaterial" class="form-control" />
+            <span asp-validation-for="Building.WallMaterial" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Building.Floors">Количесвто этажей</label>
+            <input asp-for="Building.Floors" class="form-control" />
+            <span asp-validation-for="Building.Floors" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Building.Street">Улица</label>
+            <input asp-for="Building.Street" class="form-control" />
+            <span asp-validation-for="Building.Street" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Building.ProjectId">ЖК</label>
+            <select asp-for="Building.ProjectId" class="form-control">
+                <option value="" disabled selected>Выберите ЖК</option>
+                @foreach (var type in Model.constr)
+                {
+                    <option value=@type.ProjectId>@type.Name</option>
+                }
+            </select>
+            <span asp-validation-for="Building.ProjectId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Создать</button>
+        <a asp-action="Index" class="btn btn-secondary">Отменить</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,70 @@
+.section3__background {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.section3__form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 460px;
+    position: relative;
+    top: 20%;
+    left: 70px;
+    color: white;
+    z-index: 5;
+}
+
+.section3__form-title {
+    font-size: 60px;
+}
+
+.section3__form-descr {
+    font-size: 24px;
+    color: rgb(84, 84, 87);
+    margin-top: -15px;
+}
+
+.section3__input {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding-bottom: 13px;
+    border-bottom: 2px solid rgb(42, 42, 45);
+    font-size: 20px;
+    color: whitesmoke;
+    width: 100%;
+    transition: .3s ease;
+}
+
+.section3__input::placeholder{
+    color: rgb(84, 84, 87);
+}
+
+.section3__input:hover, .section3__input:focus {
+    border-bottom: 2px solid whitesmoke;
+}
+
+.section3__submit-btn {
+    width: fit-content;
+    color: rgb(42, 42, 45);
+    padding: 18px;
+    background-color: whitesmoke;
+    text-transform: uppercase;
+    transition: .3s ease;
+    cursor: pointer;
+}
+
+.section3__submit-btn:active {
+    scale: 0.98;
+}
+
+@media (hover: hover) {
+    .section3__submit-btn:hover {
+        background-color: rgb(220, 220, 220);
+    }
+}

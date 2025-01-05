@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Дом";
+}
+
+@model IEnumerable<WebApplication4.Models.Apartment>
+
+<div class="table-wrap">
+    <p>
+        <a class="btn btn-success" asp-action="Create">Создать квартиру</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id квартиры</th>
+                <th>Id дома</th>
+                <th>Колво комнат</th>
+                <th>Этаж</th>
+                <th>Площадь</th>
+                <th>Цена</th>
+                <th>Статус</th>
+                <th>Планировка</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ApartmentId</td>
+                    <td>@item.BuildingId</td>
+                    <td>@item.Rooms</td>
+                    <td>@item.Floor</td>
+                    <td>@item.Area</td>
+                    <td>@item.Price</td>
+                    <td>@item.Status</td>
+                    <td>
+                        @if (item.Photo != null)
+                        {
+                            var base64String = Convert.ToBase64String(item.Photo);
+                            <img src="data:image/jpeg;base64,@base64String" alt="Фото планировки" class="account__image" height="150" />
+                        }
+                    </td>
+                    <td>
+                        <form asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@item.ApartmentId" />
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
